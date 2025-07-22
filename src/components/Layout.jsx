@@ -109,7 +109,7 @@ const Layout = ({ children }) => {
       <footer className="bg-stone-900 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p>&copy; {new Date().getFullYear()} Blinds of Miami. All rights reserved.</p>
-          <p className="text-sm text-stone-400 mt-2">Designed and Developed by Manus AI</p>
+          
         </div>
       </footer>
     </div>
