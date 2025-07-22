@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const StickyVideoHero = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef(null);
   const videoRef = useRef(null);
 
@@ -17,8 +16,6 @@ const StickyVideoHero = () => {
         const scrolled = Math.max(0, -rect.top);
         const maxScroll = containerHeight - windowHeight;
         const progress = Math.min(scrolled / maxScroll, 1);
-        
-        setScrollProgress(progress);
         
         // Update video time based on scroll progress
         if (videoRef.current) {
@@ -38,6 +35,12 @@ const StickyVideoHero = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  }, []);
+
   return (
     <div ref={containerRef} className="relative h-[200vh]">
       <div className="sticky top-0 h-screen flex items-center justify-center bg-gradient-to-br from-amber-900 via-stone-800 to-amber-950 overflow-hidden">
@@ -48,7 +51,9 @@ const StickyVideoHero = () => {
             className="w-full h-full object-cover opacity-30"
             muted
             playsInline
-            preload="metadata"
+            loop
+            autoPlay
+            preload="auto"
           >
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
             {/* Fallback for browsers that don't support video */}
@@ -78,23 +83,10 @@ const StickyVideoHero = () => {
           </motion.div>
         </div>
 
-        {/* Progress Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
-          <div className="w-64 h-2 bg-white/20 rounded-full overflow-hidden">
-            <motion.div
-              className="h-full bg-amber-500 rounded-full"
-              style={{ width: `${scrollProgress * 100}%` }}
-              transition={{ type: "spring", stiffness: 400, damping: 40 }}
-            />
-          </div>
-          <p className="text-white text-sm text-center mt-2">
-            Video Progress: {Math.round(scrollProgress * 100)}%
-          </p>
-        </div>
+        {/* Progress Indicator Removed */}
       </div>
     </div>
-  );
+   );
 };
 
 export default StickyVideoHero;
-

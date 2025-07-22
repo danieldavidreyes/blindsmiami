@@ -8,6 +8,9 @@ const Layout = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Option to display text next to logo
+  const showLogoText = true; // Set to false if you only want the logo image
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -43,10 +46,12 @@ const Layout = ({ children }) => {
         transition={{ type: "spring", stiffness: 120, damping: 14 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-stone-900/90 shadow-lg backdrop-blur-sm' : 'bg-transparent'}`}
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between"> {/* Increased py-5 for bigger header */}
           <Link to="/" className="flex items-center space-x-2">
-            <img src="/logo.png" alt="Blinds of Miami Logo" className="h-10" />
-            <span className="text-2xl font-bold text-white">Blinds of Miami</span>
+            <img src="/logo.png" alt="Blinds of Miami Logo" className="h-12" /> {/* Increased h-12 for bigger logo */}
+            {showLogoText && (
+              <span className="text-3xl font-bold text-white">Blinds of Miami</span> // Increased text-3xl for bigger text
+            )}
           </Link>
 
           {/* Desktop Navigation */}
@@ -112,5 +117,3 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
-
-
