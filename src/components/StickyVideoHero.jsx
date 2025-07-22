@@ -77,9 +77,7 @@ const StickyVideoHero = () => {
             <p className="text-xl md:text-2xl text-amber-100 mb-8">
               Guaranteed Best Prices in South FL
             </p>
-            <p className="text-lg text-white/80 mb-8">
-              Scroll to see blinds open
-            </p>
+            
           </motion.div>
         </div>
 
