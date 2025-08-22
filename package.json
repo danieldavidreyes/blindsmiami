@@ -1,10 +1,13 @@
 {
+  "homepage": "http://danieldavidreyes.gtihub.io/blindsofmiami",
   "name": "blinds-miami-react",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
+  "scripts":{
     "dev": "vite",
+    "predeploy": "npm run dev",
+    "deploy": "hg-pages -d build",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
